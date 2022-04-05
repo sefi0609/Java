@@ -14,7 +14,7 @@ public class drawSomeThingApplication extends Application {
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("layout.fxml"));
         Scene scene = new Scene(root);
-        stage.setTitle("FourInARow");
+        stage.setTitle("DrawSomeThing");
         stage.setScene(scene);
         stage.show();
     }
