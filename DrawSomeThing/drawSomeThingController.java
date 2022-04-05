@@ -48,7 +48,7 @@ public class drawSomeThingController {
     @FXML
     public void initialize() {
         selectedShape = null;
-        selectedColor = Color.WHITE;
+        selectedColor = Color.WHITE;//as the controller showes
         mousePressed = new double[2];
         numOfShapes = 0;
         dropDownS.getItems().addAll("Line", "Circle", "Rectangle");
