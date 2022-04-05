@@ -15,8 +15,8 @@ public class drawSomeThingController {
     private boolean fill;//indicates if the check box is clicked
     private double[] mousePressed;//indicates the x,y coordinates when the mouse is clicked, mousePressed[0] = x, mousePressed[1] = y
     private int numOfShapes;//counter for number of shapes drawn for the undo button
-    double x;//new x coordinates every drag
-    double y;//new y coordinates every drag
+    private double x;//new x coordinates every drag
+    private double y;//new y coordinates every drag
 
     //variables for the application controllers
     @FXML
