@@ -103,8 +103,8 @@ public class FourInARowController {
                     if (freeBox != -1)
                         point = game.calculateBox(freeBox + 1, 7, hInterval, vInterval);
             }
-
-            drawCircle(point[0], point[1], game.turn);//draw the circle
+            if (freeBox != -1)//if there is a free space
+                drawCircle(point[0], point[1], game.turn);//draw the circle
             if (point[2] == 1) //point[2] indicates if there is a winner
                 ShowTheWinner();
             game.switchTurn();//switch the player turn
