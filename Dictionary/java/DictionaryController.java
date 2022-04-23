@@ -186,6 +186,11 @@ public class DictionaryController {
             }
             initialize();
             myReader.close();
-        } catch (FileNotFoundException e) {}//if the file is not found, do nothing
+        } catch (FileNotFoundException e) {//popup for file not found
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Alert");
+            alert.setContentText("The file was not found");
+            alert.show();
+        }
     }
 }
