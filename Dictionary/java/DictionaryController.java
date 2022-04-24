@@ -39,10 +39,10 @@ public class DictionaryController {
                     String data = myReader.nextLine();
                     d.save(data);
                 }
-            } catch (FileNotFoundException e) {//popup for file not found
+            } catch (FileNotFoundException e) {//popup for initial file not found
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Alert");
-            alert.setContentText("The file was not found");
+            alert.setContentText("The initial file was not found");
             alert.show();
             }
             startUp = false;
