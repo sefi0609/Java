@@ -31,9 +31,9 @@ public class DictionaryController {
     @FXML
     public void initialize() {
         if (startUp) {//upload the dictionary file at start up
-            File file = new File(System.getProperty("user.dir") + "\\Dictionary file.txt");//this path string should work for all users,
-                                                                                                    //the Dictionary file is provided in the project folder
             try {
+                File file = new File(System.getProperty("user.dir") + "\\Dictionary file.txt");//this path string should work for all users,
+                                                                                               //the Dictionary file is provided in the project folder
                 Scanner myReader = new Scanner(file);
                 while (myReader.hasNextLine()) {
                     String data = myReader.nextLine();
