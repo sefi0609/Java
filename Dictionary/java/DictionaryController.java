@@ -42,7 +42,7 @@ public class DictionaryController {
             } catch (FileNotFoundException e) {//popup for initial file not found
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Alert");
-            alert.setContentText("The initial file was not found");
+            alert.setContentText("The initial file was not found\nYou can upload your own dictionary file file");
             alert.show();
             }
             startUp = false;
