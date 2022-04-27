@@ -194,6 +194,6 @@ public class DictionaryController {
             alert.setTitle("Alert");
             alert.setContentText("The file was not found");
             alert.show();
-        }
+        }catch (NullPointerException e) {}//do noting if the user didn't choose a file
     }
 }
