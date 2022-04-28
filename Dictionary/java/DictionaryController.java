@@ -86,7 +86,7 @@ public class DictionaryController {
     //open new scene for updating a key
     //update a dictionary key, show error message if the key does not exist
     @FXML
-    int clickForUpdate(ActionEvent event) throws IOException{
+    void clickForUpdate(ActionEvent event) throws IOException{
         Stage popupwindow = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("updatePopup.fxml"));
         Scene scene = new Scene(root);
@@ -97,23 +97,23 @@ public class DictionaryController {
         KeyHolder holder = KeyHolder.getInstance();
         Key k = holder.getKey();
         if(k == null)
-            return 0;//if the user closed the window without choosing a key
+            return;//if the user closed the window without choosing a key
         for (String s : d.getKeys())
             if (k.getKey().equals(s)){
                 d.insert(k.getKey(), k.getValue());
                 initialize();
-                return 0;//if the key exists do not show the alert
+                return;//if the key exists do not show the alert
             }
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setContentText("This key does not exists,\nIf you want to add it to the dictionary,\nClick the 'Enter new key' option");
         alert.show();
-        return 0;
+        return;
     }
     //open new scene for adding new value
     //add a new value to the dictionary, show error message if the key already exist
     @FXML
-    int clickForNew(ActionEvent event) throws IOException{
+    void clickForNew(ActionEvent event) throws IOException{
         Stage popupwindow = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("newPopup.fxml"));
         Scene scene = new Scene(root);
@@ -124,20 +124,20 @@ public class DictionaryController {
         KeyHolder holder = KeyHolder.getInstance();
         Key k = holder.getKey();
         if(k == null)
-            return 0;//if the user closed the window without choosing a key
+            return;//if the user closed the window without choosing a key
         for (String s : d.getKeys())
             if (k.getKey().equals(s)){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setContentText("This key already exists,\nIf you want to update it,\nClick on the 'Update a key' option");
                 alert.show();
-                return 0;//if the key exists, don't insert it
+                return;//if the key exists, don't insert it
             }
         d.insert(k.getKey(), k.getValue());
         holder.setKey(null);//if the user try to enter a new value and then close the window without choosing a key,
                             //the key will be null so that the next time the error will not show
         initialize();
-        return 0;
+        return;
     }
     //close the program for close on menu item
     @FXML
