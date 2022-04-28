@@ -108,7 +108,6 @@ public class DictionaryController {
         alert.setTitle("Error");
         alert.setContentText("This key does not exists,\nIf you want to add it to the dictionary,\nClick the 'Enter new key' option");
         alert.show();
-        return;
     }
     //open new scene for adding new value
     //add a new value to the dictionary, show error message if the key already exist
@@ -137,7 +136,6 @@ public class DictionaryController {
         holder.setKey(null);//if the user try to enter a new value and then close the window without choosing a key,
                             //the key will be null so that the next time the error will not show
         initialize();
-        return;
     }
     //close the program for close on menu item
     @FXML
