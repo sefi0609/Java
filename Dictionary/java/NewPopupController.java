@@ -33,6 +33,5 @@ public class NewPopupController {
         Key k = new Key(newKey.getText(), keyValue.getText());
         KeyHolder holder = KeyHolder.getInstance();
         holder.setKey(k);
-        return;
     }
 }
