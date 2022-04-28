@@ -39,6 +39,7 @@ public class DictionaryController {
                     String data = myReader.nextLine();
                     d.save(data);
                 }
+                myReader.close();
             } catch (FileNotFoundException e) {//popup for initial file not found
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Alert");
