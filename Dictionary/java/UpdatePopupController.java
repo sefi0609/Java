@@ -20,14 +20,14 @@ public class UpdatePopupController {
     //if the user did not enter a key or a value, an alert is shown and the user can try again
     //the return in this case is to the updatePopup, to avoid entering incomplete word
     @FXML
-    int clickOk(MouseEvent event) {
+    void clickOk(MouseEvent event) {
         boolean isKey = false;//boolean to check if the key is valid
         if (newKey.getText().isEmpty() || keyValue.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setContentText("You need to enter a key and value,\nPlease try again");
             alert.showAndWait();
-            return 0;//exit the function if the user did not enter a key or value
+            return;//exit the function if the user did not enter a key or value
         }
         // get a handle to the stage
         Stage stage = (Stage) okButton.getScene().getWindow();
@@ -36,7 +36,7 @@ public class UpdatePopupController {
         Key k = new Key(newKey.getText(), keyValue.getText());
         KeyHolder holder = KeyHolder.getInstance();
         holder.setKey(k);
-        return 0;
+        return;
 
     }
 }
