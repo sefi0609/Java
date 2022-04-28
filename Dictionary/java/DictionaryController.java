@@ -182,6 +182,12 @@ public class DictionaryController {
         try {
             File myObj = chooser.showOpenDialog(new Stage());
             Scanner myReader = new Scanner(myObj);
+            if(myReader.hasNextLine() == false){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("The Dictionary file format is not correct,\nPlease see the help section");
+                alert.show();
+            }
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 d.save(data);
