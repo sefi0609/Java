@@ -52,7 +52,7 @@ public class ChatClient {
     public boolean socketIsAlive() {
         return socket.isConnected() && !socket.isClosed();
     }
-    // listen to the chat buddy until he disconnects
+    // listen to the chat buddy until he disconnects, it's a thread so the GUI will not freeze
     public void listenForMessages( ChatController c) {
         new Thread(() -> {
             String msgFromChat;
