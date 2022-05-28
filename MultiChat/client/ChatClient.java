@@ -27,7 +27,7 @@ public class ChatClient {
             if (socket != null)
                 socket.close();
         } catch (IOException e) {
-            //e.printStackTrace();
+            e.printStackTrace();
             System.out.println("Error closing resources");
         }
     }
