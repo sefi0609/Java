@@ -11,10 +11,12 @@ public class ChatClient {
     private boolean isConnected = false;
     // constructor
     public ChatClient(String host, int port, String username) throws IOException {
+        // this socket is connected to the server's thread, the thread is communicating with the other server thread
         socket = new Socket(host, port);
         socket.setSoTimeout(30000);
         out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        // send the username to the server
         writeToBuffer(username);
     }
     //close all the resources
@@ -44,15 +46,14 @@ public class ChatClient {
         } catch (IOException e) {
             closeResources();
             if (e.getMessage().equals("Read timed out"))
-                return "timeout";
+                return "timeout"; // if the server can't find a chat buddy
             return null;
         }
     }
     // check if the client is connected
-    public boolean socketIsAlive() {
-        return socket.isConnected() && !socket.isClosed();
-    }
+    public boolean socketIsAlive() { return socket.isConnected() && !socket.isClosed(); }
     // listen to the chat buddy until he disconnects, it's a thread so the GUI will not freeze
+    // the controller object is pass to this function to controll the GUI   
     public void listenForMessages( ChatController c) {
         new Thread(() -> {
             String msgFromChat;
