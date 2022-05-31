@@ -70,7 +70,7 @@ public class ChatClient {
                     } catch (SocketException e) { e.printStackTrace(); }
                 }
                 // if the chat buddy disconnects, close all the resources and tell the controller (client)
-                else if (msgFromChat != null && msgFromChat.equals("Disconnected")) {
+                if (msgFromChat != null && msgFromChat.equals("Disconnected")) {
                     closeResources();
                     c.uiStateDisconnected();
                     c.setTextArea("The connection has ended by the other client");
