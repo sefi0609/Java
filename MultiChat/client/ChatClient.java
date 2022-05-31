@@ -13,6 +13,7 @@ public class ChatClient {
     public ChatClient(String host, int port, String username) throws IOException {
         // this socket is connected to the server's thread, the thread is communicating with the other server thread
         socket = new Socket(host, port);
+        // set a time out, if the server doesn't find a chat buddy - disconnect
         socket.setSoTimeout(30000);
         out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
