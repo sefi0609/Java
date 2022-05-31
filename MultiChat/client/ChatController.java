@@ -67,14 +67,16 @@ public class ChatController {
             port.setDisable(true);
             try {
                 client = new ChatClient(host.getText(), Integer.parseInt(port.getText()), clientName);
-            } catch (IOException e) { showAlertTimeOut(); return; }
+            } catch (IOException e) { 
+                showAlertTimeOut(); 
+                return; 
+            }
             textArea.setText(client.readFromBuffer());
             // listen for messages from the chat buddy (server) until disconnect
             client.listenForMessages(this);
         }
-        else{
+        else
             showAlertGeneral("Please provide IP and PORT");
-        }
     }
     // disconnect from the chat (server)
     @FXML
@@ -120,7 +122,10 @@ public class ChatController {
             client.writeToBuffer(clientName + " : " + enterText.getText());
             setTextArea("You: " + enterText.getText() + "\n");
 
-        } catch (IOException e) { showAlertTimeOut(); return; }
+        } catch (IOException e) { 
+            showAlertTimeOut(); 
+            return; 
+        }
         enterText.clear();
     }
     // enables/disables the buttons and text fields accordingly to the fact that we
