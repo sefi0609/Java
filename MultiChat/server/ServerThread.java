@@ -31,6 +31,7 @@ public class ServerThread extends Thread{
             }
             else {
                 sendMassageTo(this, "Waiting for someone to chat with...\n");
+                // sending the client to the waiting room, waiting for another client (two client per chat)
                 target = wr.checkNumOfClient(this);
                 // check if the message is null, if it is, the client has closed the socket
                 // if it's timeout the target is waiting
