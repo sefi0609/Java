@@ -33,16 +33,17 @@ public class ServerThread extends Thread{
                 sendMassageTo(this, "Waiting for someone to chat with...\n");
                 // sending the client to the waiting room, waiting for another client (two client per chat)
                 target = wr.checkNumOfClient(this);
-                // check if the message is null, if it is, the client has closed the socket
-                // if it's timeout the target is waiting
+                // the thread checks if the message is null, if it is, the client has closed the socket
+                // if it's timeout the target is waiting (*)
                 message = readFromBuffer();
                 //
                 if (message != null && (!message.equals("Disconnected") || message.equals("timeout"))) {
                     sendMassageTo(this, "Connection established, you are now chatting with " + target.getUsername());
                     if(wr.getNumberOfClients() == 2)
-                        wr.setNumberOfClients(0);
+                        wr.setNumberOfClients(0); // the second client clean the waiting room
                     else
-                        wr.notifyClient();
+                        wr.notifyClient(); // the first thread wakes up the second client (thread) after checking (*)
+                    // reset the time out to infinity 
                     setTimeOut(0);
                     // listen to the client send to target
                     while (socketIsAlive() && target.socketIsAlive()) {
@@ -50,7 +51,7 @@ public class ServerThread extends Thread{
                     }
                 }
                 else{
-                    // if disconnected or a tread without a client
+                    // if disconnected or a thread without a client
                     wr.setFirstClient(false);
                     wr.notifyClient();
                 }
