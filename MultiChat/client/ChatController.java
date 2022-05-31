@@ -31,6 +31,7 @@ public class ChatController {
 
     @FXML
     private TextArea textArea;
+    // initialize the GUI on start up
     @FXML
     void initialize() {
         logic = new ChatLogic();
@@ -39,18 +40,15 @@ public class ChatController {
     // connect to the chat (server)
     @FXML
     void chatConnect(MouseEvent event) {
+        // after the connection is established ask the client has for his name
         TextInputDialog td = new TextInputDialog("Enter name");
         // check for mistakes in the input of host and port
         if(!(logic.isValidInetAddress(host.getText()) || host.getText().equals("localhost"))) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Please provide a valid IP address");
-            alert.show();
+            showAlertGeneral("Please provide a valid IP address");
             return;
         }
         if(!(logic.isValidPort(port.getText()))){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Please provide a valid port number");
-            alert.show();
+            showAlertGeneral("Please provide a valid port number");
             return;
         }
         // connect to the server
@@ -69,15 +67,13 @@ public class ChatController {
             port.setDisable(true);
             try {
                 client = new ChatClient(host.getText(), Integer.parseInt(port.getText()), clientName);
-            } catch (IOException e) { showAlert(); return; }
+            } catch (IOException e) { showAlertTimeOut(); return; }
             textArea.setText(client.readFromBuffer());
             // listen for messages from the chat buddy (server) until disconnect
             client.listenForMessages(this);
         }
         else{
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Please provide IP and PORT");
-            alert.show();
+            showAlertGeneral("Please provide IP and PORT");
         }
     }
     // disconnect from the chat (server)
@@ -124,7 +120,7 @@ public class ChatController {
             client.writeToBuffer(clientName + " : " + enterText.getText());
             setTextArea("You: " + enterText.getText() + "\n");
 
-        } catch (IOException e) { showAlert(); return; }
+        } catch (IOException e) { showAlertTimeOut(); return; }
         enterText.clear();
     }
     // enables/disables the buttons and text fields accordingly to the fact that we
@@ -148,13 +144,16 @@ public class ChatController {
         sendButton.setDisable(true);
     }
     // shows an alert can't connect to the server
-    public void showAlert(){
+    public void showAlertTimeOut(){
         connectBtn.setDisable(false);
         disconnectBtn.setDisable(true);
         host.setDisable(false);
         port.setDisable(false);
+        showAlertGeneral("Can't connect to the server");
+    }
+    public void showAlertGeneral(String s){
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setContentText("Can't connect to the server");
+        alert.setContentText(s);
         alert.show();
     }
     // adds the text to the chat's text area in a new line
