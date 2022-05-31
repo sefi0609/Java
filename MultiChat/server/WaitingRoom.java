@@ -33,6 +33,7 @@ public class WaitingRoom {
     }
     // handle the second client
     public synchronized ServerThread handleSecond(ServerThread c){
+        // wake up the first thread and go to sleep, the first thread check if his client is still connected
         notifyAll();
         try {
             wait();
