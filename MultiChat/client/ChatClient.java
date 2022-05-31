@@ -57,41 +57,44 @@ public class ChatClient {
     public void listenForMessages( ChatController c) {
         new Thread(() -> {
             String msgFromChat;
-            while (socketIsAlive()) {
-                // read message from the chat buddy
+            while (socketIsAlive()) {// read message from the chat buddy
                 msgFromChat = readFromBuffer();
-                // check if it's the second client, adjust the GUI, disable socket time out and set the flag
-                if (msgFromChat != null && !msgFromChat.equals("") && isConnected == false) {
-                    isConnected = true;
-                    c.uiStateConnected();
-                    try {
-                        // disable timeout
-                        socket.setSoTimeout(0);
-                    } catch (SocketException e) { e.printStackTrace(); }
-                }
-                // if the chat buddy disconnects, close all the resources and tell the controller (client)
-                if (msgFromChat != null && msgFromChat.equals("Disconnected")) {
-                    closeResources();
-                    c.uiStateDisconnected();
-                    c.setTextArea("The connection has ended by the other client");
-                    c.initialize();
-                }// if there is timeout, close all the resources and tell the controller (client) that the server is not responding
-                else if (msgFromChat != null && msgFromChat.equals("timeout")) {
-                    closeResources();
-                    c.uiStateDisconnected();
-                    c.setTextArea("The connection has ended because the server isn't responding");
-                    c.initialize();
+                if(msgFromChat != null) {
+                    // check if it's the second client, adjust the GUI, disable socket time out and set the flag
+                    if (!msgFromChat.equals("") && isConnected == false && !msgFromChat.equals("timeout")) {
+                        isConnected = true;
+                        c.uiStateConnected();
+                        c.setTextArea(msgFromChat + "\n");
+                        try {
+                            // disable timeout
+                            socket.setSoTimeout(0);
+                        } catch (SocketException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    // if the chat buddy disconnects, close all the resources and tell the controller (client)
+                    else if (msgFromChat.equals("Disconnected")) {
+                        closeResources();
+                        c.uiStateDisconnected();
+                        c.setTextArea("The connection has ended by the other client");
+                        c.initialize();
+                    }// if there is timeout, close all the resources and tell the controller (client) that the server is not responding
+                    else if (msgFromChat.equals("timeout")) {
+                        closeResources();
+                        c.uiStateDisconnected();
+                        c.setTextArea("The connection has ended because the server isn't responding");
+                        c.initialize();
+                    }
+                    // if all is ok, set the text area for the client
+                    else
+                        c.setTextArea(msgFromChat + "\n");
                 }
                 // if the message is null, close all the resources
-                else if(msgFromChat == null){
+                else {
                     c.uiStateDisconnected();
                     closeResources();
                 }
-                // if all is ok, set the text area for the client
-                else
-                    c.setTextArea(msgFromChat + "\n");
             }
         }).start();
     }
 }
-
