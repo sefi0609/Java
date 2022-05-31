@@ -95,8 +95,7 @@ public class ServerThread extends Thread{
     // read from the client (not target)
     public String readFromBuffer() {
         try {
-            String s = in.readLine();
-            return s;
+            return in.readLine();
         } catch (IOException e) {
             if (e.getMessage().equals("Read timed out"))
                 return "timeout";
