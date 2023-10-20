@@ -1,4 +1,4 @@
-This is a simple dictionary application
+This is a dictionary desktop application
 You can search for a value by typing it in the search bar,
 You can upload a new dictionary file and add it to the dictionary's keys,
 You can clear all the dictionary keys and values,
