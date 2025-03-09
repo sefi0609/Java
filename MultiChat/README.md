@@ -1,10 +1,22 @@
-## Application Project
-This is a client-server-based desktop application for multiple sets of clients,  
-a chat between two clients with GUI.  
-Iv'e used Threads and sockets for the implementation.  
-In this project Iv'e used javaFX, Scene Builder and IntelliJ IDEA.
+## Multi Chat
 
-## Photos
+A **client-server-based desktop chat application** that allows real-time messaging between two clients with a **graphical user interface (GUI)**.
+
+## Features
+- **Real-time** chat between two clients
+- **Multi-threaded server** for handling multiple connections
+- **JavaFX GUI** for an intuitive user experience
+- **Error handling** for connection issues and timeouts
+
+## Technologies Used
+✅ **Java** – Core programming language  
+✅ **JavaFX** – For GUI development  
+✅ **Scene Builder** – For designing UI components  
+✅ **IntelliJ IDEA** – Development environment  
+✅ **Sockets & Threads** – For client-server communication  
+
+## Screenshots
+
 ### Chat Start
 ![chatstart](https://user-images.githubusercontent.com/81361291/204063362-61e7197e-1b7e-4282-a056-84ac2cb00fe2.png)
 ### Enter Name
