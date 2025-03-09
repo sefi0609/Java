@@ -1,16 +1,29 @@
-This is a dictionary desktop application  
-You can search for a value by typing it in the search bar,  
-You can upload a new dictionary file and add it to the dictionary's keys,  
-You can clear all the dictionary keys and values,  
-You can update existing dictionary keys,  
-You can also add new values and remove them one by one.  
+# 📚 Dictionary Desktop Application 
 
-If you want to upload a file the syntax of the file should be:  
-"key1" : "value1"  
-"key2" : "value2"  
-"key3" : "value3" ...  
+A desktop application for managing and searching dictionary entries. You can easily search for existing keys, upload new dictionary files, update or remove keys and values, and more.
 
-## Photos
+## Features
+- **Search** for keys quickly using a search bar
+- **Upload a dictionary file** to add new key-value pairs
+- **Clear all dictionary entries**
+- **Update existing keys**
+- **Add new values** to existing keys
+- **Remove individual keys**
+
+**File Syntax**
+
+The dictionary file for uploading must follow this syntax:
+```json
+"key1" : "value1"
+"key2" : "value2"
+"key3" : "value3" 
+```
+
+## Technologies Used
+✅ Java – A programming language for the application  
+✅ Swing – GUI framework for desktop UI  
+
+## Screenshots
 
 ![dictionary startup](https://github.com/sefi0609/Java/assets/81361291/33419b3d-98c6-44b2-8c63-e3a114aad8fe)
 
