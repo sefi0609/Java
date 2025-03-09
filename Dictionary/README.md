@@ -1,6 +1,7 @@
 # 📚 Dictionary Desktop Application 
 
-A desktop application for managing and searching dictionary entries. You can easily search for existing keys, upload new dictionary files, update or remove keys and values, and more.
+A desktop application for managing and searching dictionary entries.  
+You can easily search for existing keys, upload new dictionary files, update or remove keys and values, and more.
 
 ## Features
 - **Search** for keys quickly using a search bar
